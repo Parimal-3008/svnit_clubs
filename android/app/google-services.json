@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "746337874115",
+    "project_id": "svnit-clubs",
+    "storage_bucket": "svnit-clubs.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:746337874115:android:1cca36289635791007b276",
+        "android_client_info": {
+          "package_name": "com.example.svnit_clubs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "746337874115-r2b2n4qnemm8feabs4omos64dh9pftri.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQhCiEKwM851FzcpjeAmjP5Qfm1I_qj6A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "746337874115-r2b2n4qnemm8feabs4omos64dh9pftri.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
