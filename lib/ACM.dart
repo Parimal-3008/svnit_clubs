@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';   
@@ -28,7 +29,7 @@ final imgPicker = ImagePicker();
             children: [
            FloatingActionButton(onPressed: () async  
           { 
-            final pickedFile = await imgPicker.getImage(source: ImageSource.camera);
+            final pickedFile = await imgPicker.getImage(source: ImageSource.gallery);
 
     setState(() {
       _image = File(pickedFile.path);
@@ -40,19 +41,19 @@ final imgPicker = ImagePicker();
           FloatingActionButton(onPressed: ()  async {    
         // String fileName = basename(_image.path);
     FirebaseStorage storage = FirebaseStorage.instance;
-        StorageReference ref = storage.ref().child("username" + DateTime.now().toString());
-         StorageUploadTask uploadTask = ref.putFile(_image);
-       /* uploadTask.then((res) {
+        Reference ref = storage.ref().child("username" + DateTime.now().toString());
+        UploadTask uploadTask = ref.putFile(_image);
+       uploadTask.then((res) {
            setState(() async {
              _uploadedFileURL = await res.ref.getDownloadURL() ;
            print(_uploadedFileURL);
-           Firestore.instance.collection('acmimages').add({
+           FirebaseFirestore.instance.collection('acmimages').add({
              "url":_uploadedFileURL,
              "name": "Username",
            });
            });
            
-}*/
+});
  
  },      backgroundColor: Colors.grey,
           child: Text('UPLOAD'),

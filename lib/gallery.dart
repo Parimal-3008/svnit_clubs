@@ -1,3 +1,5 @@
+// import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -67,41 +69,40 @@ class _GalleryState extends State<Gallery> {
           
         ),
         body: TabBarView(children: [
-         StreamBuilder( stream: Firestore.instance.collection(pics).snapshots,
+         StreamBuilder( stream: FirebaseFirestore.instance.collection(pics).snapshots(),
          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot)
-         {
-                  if (!snapshot.hasData)
-               return Center(child: CircularProgressIndicator());
-               else
+        {
+                   if (!snapshot.hasData)
+                return Center(child: CircularProgressIndicator());
+              else
                {
-              return  ListView.builder(
-            itemCount: snapshot.data.size,
-            itemBuilder: (context, index) {
-              DocumentSnapshot ds = snapshot.data.docs[index];
-              return Center(
-                child: (
-                  Column(children: [Text(ds['name']),
-                  Image.network(ds['url']),
-                  SizedBox(height: 30,width:1000)
+               return  ListView.builder(
+          itemCount: snapshot.data.size,
+           itemBuilder: (context, index) {
+             DocumentSnapshot ds = snapshot.data.docs[index];
+            return Center(
+              child: (
+                Column(children: [Text(ds['name']),
+                Image.network(ds['url']),
+                SizedBox(height: 30,width:1000)
                   ])
-                ),
+             ),
               );
-            }
-);
-               }
-         }
-         ), 
-         StreamBuilder( stream: Firestore.instance.collection(video).snapshots,
-         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot)
-         {
-                  if (!snapshot.hasData)
-               return Center(child: CircularProgressIndicator());
-               else
-               {
-              return  ListView.builder(
-            itemCount: snapshot.data.size,
-            itemBuilder: (context, index) {
-              DocumentSnapshot ds = snapshot.data.docs[index];
+             }
+ );
+                }
+          }
+          ), 
+          StreamBuilder( stream: FirebaseFirestore.instance.collection(video).snapshots(),
+          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot)
+          {
+                   if (!snapshot.hasData)
+                return Center(child: CircularProgressIndicator());
+                else
+                {
+               return  ListView.builder(             itemCount: snapshot.data.size,
+             itemBuilder: (context, index) {
+               DocumentSnapshot ds = snapshot.data.docs[index];
               return Center(
                 child: (
                   Column(children: [

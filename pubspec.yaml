@@ -24,22 +24,22 @@ module:
 dependencies:
   flutter:
     sdk: flutter
-  firebase_auth:  
+  firebase_auth: 0.20.0
   firebase_storage: 
+  cloud_firestore: ^0.16.0
   fluttertoast: 
-  firebase_core:
+  firebase_core: 
   image_picker: 
   http: 
-  youtube_player_flutter:
-  cloud_firestore: 
-  flutter_datetime_picker:
-  intl:
-  time_formatter:
+  youtube_player_flutter: 
+  flutter_datetime_picker: 
+  intl: 
+  time_formatter: 
   permission_handler: 
-  google_map_location_picker:
+  flutter_local_notifications: 4.0.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  cupertino_icons: 
 
 dev_dependencies:
   flutter_test:
@@ -90,3 +90,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
