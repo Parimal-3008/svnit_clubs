@@ -100,7 +100,7 @@ class _GalleryState extends State<Gallery> {
                 return Center(child: CircularProgressIndicator());
                 else
                 {
-               return  ListView.builder(             itemCount: snapshot.data.size,
+               return  ListView.builder(itemCount: snapshot.data.size,
              itemBuilder: (context, index) {
                DocumentSnapshot ds = snapshot.data.docs[index];
               return Center(
