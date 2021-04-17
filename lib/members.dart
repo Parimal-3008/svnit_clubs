@@ -12,6 +12,7 @@ class Members extends StatefulWidget {
 class _MembersState extends State<Members> {
   String club;
   int ind;
+  bool isLoading = false;
   PDFDocument _doc;
   _MembersState(this.club);
   @override
@@ -20,37 +21,30 @@ class _MembersState extends State<Members> {
     _initPdf();
   }
 
-  _initPdf() async {}
-  call(DocumentSnapshot ds) async {
+  _initPdf() async {
+    setState(() {
+      isLoading = true;
+    });
+    DocumentSnapshot ds =
+        await FirebaseFirestore.instance.collection('members').doc(club).get();
+    // ignore: unnecessary_statements
     PDFDocument d = await PDFDocument.fromURL(ds['url']);
     setState(() {
       _doc = d;
+      isLoading = false;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: Text("Flutter PDF Demo"),
         ),
-        body: StreamBuilder(
-            stream: FirebaseFirestore.instance
-                .collection('members').doc(club).snapshots(),
-            builder:
-                (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-              if (!snapshot.hasData)
-                return Center(child: CircularProgressIndicator());
-              else {
-                return ListView.builder(itemBuilder: (context, index) {
-                  DocumentSnapshot ds = snapshot.data;
-                  call(ds);
-                  return Center(
-                      child:
-                          (Row(children: [PDFViewer(document: _doc)])));
-                });
-              }
-            }));
+        body: isLoading
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : Center(child: PDFViewer(document: _doc)));
   }
 }
