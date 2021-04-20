@@ -1,8 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:svnit_clubs/announcement.dart';
-import 'package:svnit_clubs/gallery.dart';
-import 'package:svnit_clubs/members.dart';
+import 'package:svnit_clubs/display.dart';
+import 'package:svnit_clubs/ongoing.dart';
+import 'package:svnit_clubs/upcoming.dart';
 
 //import 'package:firebase_auth/firebase_auth.dart';
 void main() async {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
      
-      home: Members('acm'),
+      home: Ongoing(),
     );
   }
 }

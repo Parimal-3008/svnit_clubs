@@ -38,6 +38,7 @@ dependencies:
   permission_handler: 
   flutter_local_notifications: 4.0.0
   flutter_plugin_pdf_viewer: 
+  file_picker: 2.1.7
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: 

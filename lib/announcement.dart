@@ -29,9 +29,9 @@ class _AnnouncementState extends State<Announcement> {
   var date2;
   var time1;
   var time2;
-  String d1;
+  String d1;String d2;
   String t1;
-  String d11;
+  String d11;String d12;
   String sty;
   File _image;
   Image imgFile;
@@ -113,7 +113,11 @@ class _AnnouncementState extends State<Announcement> {
                         setState(() {
                           starttime = time;
                           _hour = time.hour.toString();
+                          if(_hour.length==1)
+                          _hour="0"+_hour;
                           _minute = time.minute.toString();
+                          if(_minute.length==1)
+                          _minute="0"+_minute;
                           str1 = _hour + ':' + _minute;
                         });
                         t1 = str1;
@@ -148,7 +152,9 @@ class _AnnouncementState extends State<Announcement> {
                                 gravity: ToastGravity.BOTTOM,
                                 backgroundColor: Colors.grey,
                                 textColor: Colors.black);
+                                 d2 = date.toString().substring(0, 10);
                         });
+                        d12=d2;
                       }),
                   Container(
                     child: Text(str3, style: TextStyle(fontSize: 20)),
@@ -164,11 +170,15 @@ class _AnnouncementState extends State<Announcement> {
                             context: context, initialTime: starttime);
                         setState(() {
                           starttime = time;
-                          _hour = time.hour.toString();
+                         _hour = time.hour.toString();
+                          if(_hour.length==1)
+                          _hour="0"+_hour;
                           _minute = time.minute.toString();
-                          if ((_hour + ' : ' + _minute).compareTo(str1) >= 0 ||
+                          if(_minute.length==1)
+                          _minute="0"+_minute;
+                          if ((_hour + ':' + _minute).compareTo(str1) >= 0 ||
                               str3.compareTo(str) > 0)
-                            str4 = _hour + ' : ' + _minute;
+                            str4 = _hour + ':' + _minute;
                           else
                             return Fluttertoast.showToast(
                                 msg: 'Enter valid time',
@@ -176,7 +186,9 @@ class _AnnouncementState extends State<Announcement> {
                                 gravity: ToastGravity.BOTTOM,
                                 backgroundColor: Colors.grey,
                                 textColor: Colors.black);
+                                
                         });
+                        
                       }),
                   Container(
                     child: Text(str4, style: TextStyle(fontSize: 20)),
@@ -279,7 +291,10 @@ class _AnnouncementState extends State<Announcement> {
                             "stime": t1,
                             "etime": str4,
                             "location": location,
-                            "scheduled": d11 + " " + t1 + ":0.00",
+                            "scheduled": d11 + " " + t1 + ":00",
+                            "scheduled_end":d12+" "+str4+":00",
+                            "sort":Timestamp.fromDate(DateTime.parse(d11 + " " + t1 + ":00")),
+                            "sort1":Timestamp.fromDate(DateTime.parse(d11 + " " + t1 + ":00")),
                           });
                         });
                       });
