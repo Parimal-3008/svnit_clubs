@@ -31,7 +31,9 @@ class _OngoingState extends State<Ongoing> {
                       var current = DateTime.now();
                       var t1 =ds['sort'].toDate();
                       var t2 = ds['sort1'].toDate();
-                      return (t1.isBefore(current)==1&&current.isBefore(t2)==1)? Center(
+                      print(t1);
+                      print(t2);
+                      return (t1.isBefore(current)&&current.isBefore(t2))? Center(
                           child: (Column(children: [
                             InkWell(
                               child: Container(
@@ -57,7 +59,7 @@ class _OngoingState extends State<Ongoing> {
                             ),
                             SizedBox(height: 10, width: 1000)
                           ])),
-                        ):SizedBox(width:1000,height:0);
+                        ):Container(height: 0,width:0);
                       
                     });
               }

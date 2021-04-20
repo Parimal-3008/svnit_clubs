@@ -294,7 +294,7 @@ class _AnnouncementState extends State<Announcement> {
                             "scheduled": d11 + " " + t1 + ":00",
                             "scheduled_end":d12+" "+str4+":00",
                             "sort":Timestamp.fromDate(DateTime.parse(d11 + " " + t1 + ":00")),
-                            "sort1":Timestamp.fromDate(DateTime.parse(d11 + " " + t1 + ":00")),
+                            "sort1":Timestamp.fromDate(DateTime.parse(d12 + " " + str4 + ":00")),
                           });
                         });
                       });

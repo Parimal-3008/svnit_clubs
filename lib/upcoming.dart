@@ -57,7 +57,7 @@ class _UpcomingState extends State<Upcoming> {
                             ),
                             SizedBox(height: 10, width: 1000)
                           ])),
-                        ):SizedBox(height:0,width: 1000,);
+                        ):Container(height:0,width: 0,);
                       
                       
                      
