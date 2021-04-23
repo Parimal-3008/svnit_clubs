@@ -46,6 +46,7 @@ class _AnnouncementState extends State<Announcement> {
   @override
   void initState() {
     _dateController.text = DateFormat.yMd().format(DateTime.now());
+    
     super.initState();
   }
 
@@ -203,7 +204,7 @@ class _AnnouncementState extends State<Announcement> {
                   labelText: "Enter location of annnouncement"),
               onChanged: (value) {
                 setState(() {
-                  location = value;
+                  location = c1.text;
                 });
               },
             ),
@@ -213,8 +214,9 @@ class _AnnouncementState extends State<Announcement> {
                   border: OutlineInputBorder(),
                   labelText: "Enter title of announcemnt"),
               onChanged: (value) {
+                print(c2.text);
                 setState(() {
-                  title = value;
+                  title = c2.text;
                 });
               },
             ),
@@ -222,13 +224,14 @@ class _AnnouncementState extends State<Announcement> {
               width: double.infinity,
               height: 100,
               child: TextField(
+                maxLines: 20,
                 controller: c3,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: "Describe your event"),
                 onChanged: (value) {
                   setState(() {
-                    desc = value;
+                    desc = c3.text;
                   });
                 },
               ),
@@ -269,7 +272,6 @@ class _AnnouncementState extends State<Announcement> {
                 RaisedButton(
                     onPressed: () async {
                       FirebaseStorage storage = FirebaseStorage.instance;
-
                       Reference ref = storage
                           .ref()
                           .child("username" + DateTime.now().toString());
@@ -296,8 +298,11 @@ class _AnnouncementState extends State<Announcement> {
                             "sort":Timestamp.fromDate(DateTime.parse(d11 + " " + t1 + ":00")),
                             "sort1":Timestamp.fromDate(DateTime.parse(d12 + " " + str4 + ":00")),
                           });
-                        });
+                        }
+                        
+                        );
                       });
+                      Navigator.pop(context);
                     },
                     child: Text('Announce'))
               ],

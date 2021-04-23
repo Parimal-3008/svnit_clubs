@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:svnit_clubs/upcoming.dart';
 import 'ACM.dart';
 import 'CEV.dart';
-import 'CHRD.dart';
-import 'DSC.dart';
-import 'Drishti.dart';
+import 'announcement.dart';
+import 'ongoing.dart';
+
 class ClubList extends StatefulWidget
 {
   @override
@@ -16,6 +17,37 @@ class _ClubListState extends State<ClubList>
    @override
   Widget build(BuildContext context) {
      return new Scaffold(
+        drawer: new Drawer(
+          child: ListView(
+            children: <Widget>[
+              ListTile(
+                title: Text('Upcoming Events'),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Upcoming()));
+                },
+              ),
+                ListTile(
+                title: Text('Ongoing Events'),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Ongoing()));
+                },
+              ),
+                ListTile(
+                title: Text('Announce an Event'),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Announcement()));
+                },
+              ),
+              Divider(
+                color: Colors.black,
+                thickness: 5.0,
+              ),
+            ],
+          ),
+        ),
         appBar: AppBar(
           title: Center(child: Text('CLUBS')),
           backgroundColor: Colors.blue,
@@ -100,15 +132,13 @@ class ListButton extends StatelessWidget {
         onTap:(
         ){
           if(ind==1)
-         Navigator.push(context,MaterialPageRoute(builder: (context) =>Drishti() ),   );
+         Navigator.push(context,MaterialPageRoute(builder: (context) =>ACM('drishti') ),   );
          else if(ind==2)
-         Navigator.push(context,MaterialPageRoute(builder: (context) =>ACM() ),   );
+         Navigator.push(context,MaterialPageRoute(builder: (context) =>ACM('acm') ),   );
          else if(ind==3)
-         Navigator.push(context,MaterialPageRoute(builder: (context) =>DSC() ),   );
-         else if(ind==4)
-         Navigator.push(context,MaterialPageRoute(builder: (context) =>CEV() ),   );
+         Navigator.push(context,MaterialPageRoute(builder: (context) =>ACM('dsc') ),   );
          else
-         Navigator.push(context,MaterialPageRoute(builder: (context) =>CHRD() ),   );
+         Navigator.push(context,MaterialPageRoute(builder: (context) =>ACM('chrd') ),   );
         }
       );
   }

@@ -6,8 +6,16 @@ class Display extends StatefulWidget {
   @override
   _DisplayState createState() => _DisplayState();
 }
-
+ 
 class _DisplayState extends State<Display> {
+  @override
+  void initState() {
+    // TODO: implement initState
+     FirebaseFirestore rootRef = FirebaseFirestore.instance;
+CollectionReference idsRef = rootRef.collection("announcements");
+ idsRef.orderBy("sort",descending: true);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return new Scaffold(

@@ -1,44 +1,42 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:svnit_clubs/DisplayProject.dart';
 import 'package:svnit_clubs/showannouncement.dart';
-
-class Upcoming extends StatefulWidget {
+//show list of projects of a particular club
+class ShowProject extends StatefulWidget {
+  String club;//send collection name
+  ShowProject(this.club);
   @override
-  _UpcomingState createState() => _UpcomingState();
+  _ShowProjectState createState() => _ShowProjectState(club);
 }
 
-class _UpcomingState extends State<Upcoming> {
-  @override
-  void initState() {
-    
-    // TODO: implement initState
-    super.initState();
-     
+class _ShowProjectState extends State<ShowProject> {
+  String club;
+  _ShowProjectState(String st){
+    club=st+"projects";
   }
   @override
   Widget build(BuildContext context) {
-   
     return new Scaffold(
         appBar: AppBar(
-          title: Center(child: Text('Upcoming')),
+          title: Center(child: Text('ShowProject')),
           backgroundColor: Colors.blue,
         ),
         body: StreamBuilder(
             stream: FirebaseFirestore.instance
-                .collection('announcements').orderBy('sort', descending:  false).snapshots(),
+                .collection(club)
+                .snapshots(),
             builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
               if (!snapshot.hasData)
                 return Center(child: CircularProgressIndicator());
               else {
                 return ListView.builder(
                     itemCount: snapshot.data.size,
+                    // ignore: missing_return
                     itemBuilder: (context, index) {
                       DocumentSnapshot ds = snapshot.data.docs[index];
-                      var current = DateTime.now();
-                      var t1 =ds['sort'].toDate();
-                      var t2 = ds['sort1'].toDate();
-                      
-                    return   current.isBefore(t1) ?  Center(
+                     
+                      return  Center(
                           child: (Column(children: [
                             InkWell(
                               child: Container(
@@ -47,9 +45,8 @@ class _UpcomingState extends State<Upcoming> {
                                     leading: FlutterLogo(size: 56.0),
                                     title: Text(ds['title']),
                                     subtitle: Text(
-                                        ds['club'] + '      ' + ds['location']),
-                                    trailing: Text(
-                                        ds['sdate'] + '      ' + ds['stime']),
+                                        ds['tech'] ),
+                                   
                                   ),
                                 ),
                               ),
@@ -58,16 +55,14 @@ class _UpcomingState extends State<Upcoming> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          ShowAnnouncement(ds)),
+                                       DisplayProject(ds)),
                                 );
                               },
                             ),
                             SizedBox(height: 10, width: 1000)
                           ])),
-                        ):Container(height:0,width: 0,);
+                        );
                       
-                      
-                     
                     });
               }
             }));

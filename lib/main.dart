@@ -1,9 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:svnit_clubs/announcement.dart';
+import 'package:svnit_clubs/ClubList.dart';
+import 'package:svnit_clubs/addimage.dart';
+import 'package:svnit_clubs/addvideo.dart';
 import 'package:svnit_clubs/display.dart';
-import 'package:svnit_clubs/ongoing.dart';
-import 'package:svnit_clubs/upcoming.dart';
+
+import 'gallery.dart';
 
 //import 'package:firebase_auth/firebase_auth.dart';
 void main() async {
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
      
-      home: Upcoming(),
+      home: ClubList(),
     );
   }
 }
